@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduLearn</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #000000, #000428, #2c003e);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      height: 50px;
+      width: auto;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ff0000;
+    }
+
+    .profile-dropdown {
+      position: relative;
+      margin-left: 2rem;
+    }
+
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #1a1a40;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      border: 2px solid #ff0000;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background-color: #1a1a40;
+      border: 1px solid #ff0000;
+      border-radius: 8px;
+      width: 200px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: #ffffff;
+      border-bottom: 1px solid #333;
+      transition: background-color 0.3s ease;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #ff0000;
+      color: #fff;
+    }
+
+    .profile-dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(120deg, rgba(0,0,0,0.8), rgba(10,10,50,0.8)), url('https://images.unsplash.com/photo-1532619187608-e5375cab36f3?auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: #ff0000;
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
+    body {
+  background: linear-gradient(-45deg, #000000, #000428, #2c003e, #4a0000);
+  background-size: 400% 400%;
+  animation: flowBG 15s ease infinite;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+@keyframes flowBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+    .btn-explore {
+      margin-top: 2rem;
+      background-color: #ff0000;
+      color: #ffffff;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-explore:hover {
+      background-color: #cc0000;
+    }
+
+    section.courses {
+      padding: 4rem 2rem;
+      background-color: #0b0b2e;
+    }
+
+    section.courses h2 {
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 2rem;
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .course-card {
+      background-color: #1a1a40;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .course-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .course-card h3 {
+      color: #ff4c4c;
+      margin-bottom: 1rem;
+    }
+
+    .course-card p {
+      font-size: 0.95rem;
+      color: #d3d3d3;
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      background-color: #000000;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="../static/logo.png" alt="Logo" class="logo" />
+    <nav>
+      <a href="#">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="../aboutus/index.html">About</a>
+      <a href="#contact">Contact</a>
+      <div class="profile-dropdown">
+        <div class="profile-icon">👤</div>
+        <div class="dropdown-menu">
+          <a href="../templates/myprofile.html">My Profile</a>
+          <a href="mycourses.html">My Courses</a>
+          <a href="../pomodoro/pomindex.html">Pomodoro Session</a>
+
+          <a href="../templates/quicknotes.html">Quick Notes</a>
+          <a href="../studyplanner/index.html">To-Do List</a>
+          <li><a href="#" id="logoutBtn">Logout</a></li>
+
+
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Explore Courses</h1>
+    <p>Empowering you with knowledge through expertly designed online courses. Start learning today and unlock your full potential!</p>
+    <a href="../courses/index.html" class="btn-explore">Get Started</a>
+
+  </div>
+
+  <section class="courses" id="courses">
+    <h2>Popular Courses</h2>
+    <div class="course-grid">
+      <div class="course-card">
+        <h3>Web Development</h3>
+        <p>Learn to build stunning websites using HTML, CSS, and JavaScript.</p>
+      </div>
+      <div class="course-card">
+        <h3>Data Science</h3>
+        <p>Dive into data analysis, machine learning, and data visualization techniques.</p>
+      </div>
+      <div class="course-card">
+        <h3>UI/UX Design</h3>
+        <p>Master the art of designing intuitive and visually appealing interfaces.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 EduLearn. All rights reserved.
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const profileIcon = document.querySelector('.profile-icon');
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+  
+      profileIcon.addEventListener('click', function (e) {
+        e.stopPropagation();
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+      });
+  
+      // Hide dropdown if user clicks outside
+      document.addEventListener('click', function () {
+        dropdownMenu.style.display = 'none';
+      });
+    });
+</script><div id="logoutSuccessPopup" style="
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: linear-gradient(135deg, #4d0f20, #ff647f);
+color: white;
+padding: 1.5rem 2rem;
+border-radius: 20px;
+text-align: center;
+font-size: 1.2rem;
+box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+z-index: 9999;
+display: none;
+">
+👋 Logged out successfully! Redirecting...
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const logoutBtn = document.getElementById("logoutBtn");
+    const popup = document.getElementById("logoutSuccessPopup");
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent link from navigating
+
+        // Clear localStorage
+        localStorage.removeItem("loggedInUser");
+
+        // Show popup
+        popup.style.display = "block";
+
+        // Redirect after 2 seconds
+        setTimeout(() => {
+          window.location.href = "../landingpage/index.html"; // Adjust path if needed
+        }, 2000);
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

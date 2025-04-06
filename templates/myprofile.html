@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile</title>
+  <link rel="stylesheet" href="../static/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    .profile-container {
+      max-width: 700px;
+      margin: 4rem auto;
+      background: #1a1a1a;
+      padding: 2rem 3rem;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+    .profile-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .profile-header h1 {
+      font-size: 2rem;
+      color: #ff5e7e;
+    }
+    .profile-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .info-block {
+      background: #2e2e2e;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    .info-block strong {
+      display: block;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+    .info-block span {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    .not-logged {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 4rem;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-container" id="profileContainer" style="display: none;">
+    <div class="profile-header">
+      <h1>Welcome, <span id="userName">User</span> 👋</h1>
+      <p>Your profile details are shown below:</p>
+    </div>
+    <div class="profile-info">
+      <div class="info-block">
+        <strong>Email</strong>
+        <span id="userEmail">-</span>
+      </div>
+      <div class="info-block">
+        <strong>Role</strong>
+        <span id="userRole">-</span>
+      </div>
+      <div class="info-block">
+        <strong>Joined On</strong>
+        <span id="userJoined">-</span>
+      </div>
+      <div class="info-block">
+        <strong>Courses Enrolled</strong>
+        <span id="userCourses">0</span>
+      </div>
+      <div class="info-block">
+        <strong>Notes Saved</strong>
+        <span id="userNotes">0</span>
+      </div>
+      <div class="info-block">
+        <strong>Pomodoro Sessions</strong>
+        <span id="userPomodoro">0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="not-logged" id="notLoggedIn" style="display: none;">
+    😢 No user is logged in.<br />
+    <a href="../templates/signup_form.html" style="color: #ff5e7e;">Go to Sign Up</a> or 
+    <a href="../templates/login_form.html" style="color: #7ac7ff;">Log In</a>
+  </div>
+
+  <script>
+    // Fetch user from localStorage
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    if (user) {
+      document.getElementById("profileContainer").style.display = "block";
+
+      document.getElementById("userName").textContent = user.name;
+      document.getElementById("userEmail").textContent = user.email;
+      document.getElementById("userRole").textContent = user.role;
+      document.getElementById("userJoined").textContent = user.joined;
+      document.getElementById("userCourses").textContent = user.courses;
+      document.getElementById("userNotes").textContent = user.notes;
+      document.getElementById("userPomodoro").textContent = user.pomodoro;
+    } else {
+      document.getElementById("notLoggedIn").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>

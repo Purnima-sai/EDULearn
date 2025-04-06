@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Team</title>
+  <style>
+    :root {
+      --bg-color: #f9fafb;
+      --text-color: #1f2937;
+      --card-bg: #ffffff;
+      --link-color: #0a66c2;
+    }
+
+    body.dark {
+      --bg-color: #1a1a1a;
+      --text-color: #f3f4f6;
+      --card-bg: #2a2a2a;
+      --link-color: #4ea3f1;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .toggle-btn {
+      cursor: pointer;
+      background: none;
+      border: 2px solid var(--text-color);
+      color: var(--text-color);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background-color: var(--text-color);
+      color: var(--bg-color);
+    }
+
+    .team-container {
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+    }
+
+    .team-card {
+      display: flex;
+      align-items: center;
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, background 0.3s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .team-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .info h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .info p {
+      margin: 0 0 0.75rem;
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+
+    .info a {
+      color: var(--link-color);
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .team-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .team-card img {
+        margin: 0 0 1rem 0;
+      }
+
+      .team-card .info {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Our Team</h1>
+    <button class="toggle-btn" onclick="toggleTheme()">Toggle Theme</button>
+  </header>
+
+  <div class="team-container">
+
+    <!-- Aashay -->
+    <div class="team-card">
+      <img src="./IMG_20240505_201307.jpg" alt="Aashay Kumar">
+      <div class="info">
+        <h2>Aashay Kumar</h2>
+        <p>2nd Year<br>B.Tech CSE<br>Vignan's Foundation for Science, Tech & Research</p>
+        <a href="https://www.linkedin.com/in/aashay99/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- Purnima -->
+    <div class="team-card">
+      <img src="./image copy.png" alt="Purnima Sai">
+      <div class="info">
+        <h2>Purnima Sai</h2>
+        <p>2nd Year<br>B.Tech CSE<br>Vignan's Foundation for Science, Tech & Research</p>
+        <a href="YOUR_LINKEDIN_URL_HERE" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- Sowmya -->
+    <div class="team-card">
+      <img src="./image.png" alt="Lalitha Sowmya">
+      <div class="info">
+        <h2>Lalitha Sowmya</h2>
+        <p>2nd Year<br>B.Tech CSE<br>Vignan's Foundation for Science, Tech & Research</p>
+        <a href="YOUR_LINKEDIN_URL_HERE" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- Sireesha -->
+    <div class="team-card">
+      <img src="./image copy 2.png" alt="M.B. Sireesha">
+      <div class="info">
+        <h2>M.B. Sireesha</h2>
+        <p>2nd Year<br>B.Tech CSE<br>Vignan's Foundation for Science, Tech & Research</p>
+        <a href="YOUR_LINKEDIN_URL_HERE" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+</body>
+</html>

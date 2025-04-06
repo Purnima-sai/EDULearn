@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Catalog - EduLearn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(-45deg, #000000, #000428, #2c003e, #4a0000);
+      background-size: 400% 400%;
+      animation: flowBG 15s ease infinite;
+      color: #ffffff;
+      padding: 2rem;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    @keyframes flowBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #ff4c4c;
+    }
+
+    #controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.5rem auto;
+    }
+
+    #search-bar {
+      padding: 0.7rem 1rem;
+      font-size: 1rem;
+      width: 280px;
+      border-radius: 25px;
+      border: 2px solid #ff4c4c;
+      outline: none;
+    }
+
+    #dark-mode-toggle {
+      background: #1a1a40;
+      border: 2px solid #ff4c4c;
+      color: #fff;
+      border-radius: 50px;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #dark-mode-toggle:hover {
+      background: #ff4c4c;
+    }
+
+    .course-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .course-card {
+      background-color: #1a1a40;
+      border: 2px solid #ff4c4c;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .course-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 28px rgba(255, 76, 76, 0.4);
+    }
+
+    .course-card h2 {
+      color: #ff4c4c;
+      margin-bottom: 0.5rem;
+    }
+
+    .course-card p {
+      color: #ddd;
+      font-size: 0.95rem;
+    }
+
+    .enroll-button {
+      margin-top: 1rem;
+      background-color: #ff4c4c;
+      border: none;
+      color: white;
+      padding: 0.75rem 1.2rem;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .enroll-button:hover {
+      background-color: #cc0000;
+    }
+
+    .hover-info {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .course-content {
+      margin-top: 1.5rem;
+    }
+
+    .course-content h3 {
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .course-content a {
+      display: block;
+      color: #ff8080;
+      text-decoration: none;
+      margin: 0.3rem 0;
+      transition: color 0.3s ease;
+    }
+
+    .course-content a:hover {
+      color: #ffffff;
+    }
+
+    /* Light mode styles */
+    .light-mode {
+      background: #f3f3f3;
+      color: #111;
+    }
+
+    .light-mode .course-card {
+      background-color: #fff;
+      color: #222;
+      border: 2px solid #222;
+    }
+
+    .light-mode .course-card h2 {
+      color: #cc0000;
+    }
+
+    .light-mode .enroll-button {
+      background-color: #cc0000;
+    }
+
+    .light-mode .enroll-button:hover {
+      background-color: #990000;
+    }
+
+    .light-mode .hover-info {
+      color: #555;
+    }
+
+    .light-mode .course-content a {
+      color: #cc0000;
+    }
+
+    .light-mode #dark-mode-toggle {
+      background: #fff;
+      color: #cc0000;
+      border-color: #cc0000;
+    }
+
+    .light-mode #search-bar {
+      border-color: #cc0000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎓 Course Catalog</h1>
+    <div id="controls">
+      <input type="text" id="search-bar" placeholder="🔍 Search courses..." />
+      <button id="dark-mode-toggle">Toggle Theme</button>
+    </div>
+    <div id="my-courses"></div>
+
+  </header>
+
+  <div class="course-container" id="course-container">
+    <!-- Dynamic cards added by JS -->
+  </div>
+  <script>
+    const courses = [
+      { title: "Web Development", desc: "Build modern, responsive websites and apps.", hover: "HTML5, CSS3, JS, React/Vue, backend", emoji: "🌐" },
+      { title: "Data Science", desc: "Python, visualization, and ML fundamentals.", hover: "Pandas, NumPy, Matplotlib, Scikit-learn", emoji: "📊" },
+      { title: "Artificial Intelligence", desc: "Intro to intelligent algorithms.", hover: "Search, logic, AI ethics", emoji: "🤖" },
+      { title: "Machine Learning", desc: "Train models to learn from data.", hover: "Regression, Classification, DL", emoji: "🧠" },
+      { title: "Cybersecurity", desc: "Defend systems from threats.", hover: "Ethical hacking, encryption, malware", emoji: "🔐" },
+      { title: "Cloud Computing", desc: "Deploy apps on the cloud.", hover: "AWS, Azure, DevOps, Docker", emoji: "☁️" },
+      { title: "Blockchain", desc: "The tech behind crypto.", hover: "Ethereum, smart contracts, NFTs", emoji: "⛓️" },
+      { title: "Mobile App Dev", desc: "Build Android/iOS apps.", hover: "Kotlin, Swift, Flutter", emoji: "📱" },
+      { title: "Database Systems", desc: "Master SQL and NoSQL.", hover: "MySQL, MongoDB, normalization", emoji: "💾" },
+      { title: "UI/UX Design", desc: "Design user-friendly interfaces.", hover: "Figma, prototyping, accessibility", emoji: "🎨" },
+      { title: "Operating Systems", desc: "Understand OS internals.", hover: "Processes, memory, file systems", emoji: "🖥️" },
+      { title: "Computer Networks", desc: "How data travels on the web.", hover: "TCP/IP, DNS, firewalls", emoji: "🌐" },
+      { title: "Software Engineering", desc: "Build large-scale software.", hover: "SDLC, agile, version control", emoji: "🧩" },
+      { title: "DevOps & CI/CD", desc: "Automate deployment cycles.", hover: "Jenkins, GitHub Actions, pipelines", emoji: "⚙️" }
+    ];
+  
+    const catalogContainer = document.getElementById("course-container");
+    const myCoursesContainer = document.getElementById("my-courses");
+  
+    function enrollCourse(course) {
+      let myCourses = JSON.parse(localStorage.getItem("myCourses")) || [];
+  
+      // Avoid duplicate enrollments
+      if (!myCourses.some(c => c.title === course.title)) {
+        myCourses.push(course);
+        localStorage.setItem("myCourses", JSON.stringify(myCourses));
+        alert(`Enrolled in ${course.title}!`);
+        displayMyCourses(); // Update "My Courses" after enrollment
+      } else {
+        alert(`Already enrolled in ${course.title}.`);
+      }
+    }
+  
+    function renderCourses(filteredCourses) {
+      catalogContainer.innerHTML = "";
+      filteredCourses.forEach(course => {
+        catalogContainer.innerHTML += `
+          <div class="course-card">
+            <h2>${course.emoji} ${course.title}</h2>
+            <p>${course.desc}</p>
+            <button class="enroll-button" onclick='enrollCourse(${JSON.stringify(course)})'>Enroll Now</button>
+            <div class="hover-info">${course.hover}</div>
+            <div class="course-content">
+              <h3>Materials:</h3>
+              <a href="#">📽️ Lecture Videos</a>
+              <a href="#">📜 PDFs</a>
+              <a href="#">📝 Assignments</a>
+              <a href="#">🧠 Quiz</a>
+            </div>
+          </div>
+        `;
+      });
+    }
+  
+    function displayMyCourses() {
+      const enrolled = JSON.parse(localStorage.getItem("myCourses")) || [];
+      if (enrolled.length === 0) {
+        myCoursesContainer.innerHTML = "<p>No courses enrolled yet.</p>";
+      } else {
+        myCoursesContainer.innerHTML = `
+          <h2 style="margin-top: 1rem; color: #ff4c4c;">📚 My Courses</h2>
+          <div class="course-container">
+            ${enrolled.map(course => `
+              <div class="course-card">
+                <h2>${course.emoji} ${course.title}</h2>
+                <p>${course.desc}</p>
+                <div class="hover-info">${course.hover}</div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
+    }
+  
+    // Theme toggle
+    document.getElementById("dark-mode-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("light-mode");
+    });
+  
+    // Search filter
+    document.getElementById("search-bar").addEventListener("input", (e) => {
+      const search = e.target.value.toLowerCase();
+      const filtered = courses.filter(course =>
+        course.title.toLowerCase().includes(search)
+      );
+      renderCourses(filtered);
+    });
+  
+    // Initial render
+    renderCourses(courses);
+    displayMyCourses();
+  </script>
+  
+</body>
+</html>

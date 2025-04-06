@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Study Planner</title>
+</head>
+<!-- Set default theme to Red -->
+<body class="theme-red">
+
+  <!-- Theme Switcher -->
+  <div class="theme-switcher">
+    <button data-theme="theme-red">Red</button>   <!-- Added Red -->
+    <button data-theme="theme-green">Green</button>
+    <button data-theme="theme-yellow">Yellow</button>
+    <!-- Removed Red/Brown button -->
+  </div>
+
+  <div class="container">
+    <h1>Study Planner</h1>
+    <!-- ... rest of your container content ... -->
+    <div class="add-task-area">
+        <input type="text" id="newTaskInput" placeholder="Enter a new task...">
+        <button id="addTaskButton">Add Task</button>
+    </div>
+    <div id="tasks">
+      <p id="noTasksMessage">No tasks added yet. Add some!</p>
+    </div>
+    <div id="progress">
+       <h2>Progress Tracker</h2>
+       <progress id="progressBar" value="0" max="100"></progress>
+       <p id="progressText">0% complete</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

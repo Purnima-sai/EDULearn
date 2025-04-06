@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"> <!-- Changed Font -->
+
+    <!-- ICONS -->
+    <script src="https://kit.fontawesome.com/6f3103b13c.js" crossorigin="anonymous"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./pomstyle.css">
+
+</head>
+<!-- Add class for default theme preference -->
+<body class="dark-mode">
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" title="Toggle Theme">
+        <i class="fa-solid fa-sun"></i> <!-- Sun icon for dark mode -->
+        <i class="fa-solid fa-moon"></i> <!-- Moon icon for light mode -->
+    </button>
+
+    <section>
+        <div class="container">
+            <h1>Pomodoro Session</h1>
+            <h5>Boost Your Focus</h5><br>
+
+            <!-- Cycle Selection -->
+            <div class="cycle-select">
+                <button data-work="25" data-break="5" class="cycle-btn active-cycle">25 / 5</button>
+                <button data-work="50" data-break="10" class="cycle-btn">50 / 10</button>
+            </div>
+
+            <!-- Status Panel -->
+            <div class="panel">
+                <p id="work" class="active-panel">Work</p>
+                <p id="break">Break</p>
+            </div>
+
+            <!-- Timer Display -->
+            <div class="timer">
+                <div class="circle">
+                     <!-- SVG for potential progress ring later -->
+                     <svg width="280" height="280" viewbox="-10 -10 280 280" style="transform: rotate(-90deg);">
+                      <circle class="bg-circle" cx="130" cy="130" r="120" />
+                      <circle id="progress-ring" class="progress-circle" cx="130" cy="130" r="120" />
+                  </svg>
+                    <div class="time">
+                        <p id="minutes">25</p> <!-- Start with default -->
+                        <p class="colon">:</p>
+                        <p id="seconds">00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <button id="start" title="Start Timer"><i class="fa-solid fa-play"></i></button>
+                <button id="pause" title="Pause Timer" style="display: none;"><i class="fa-solid fa-pause"></i></button>
+                <button id="reset" title="Reset Timer"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRIPT -->
+    <script src="./pomjs.js"></script>
+</body>
+</html>

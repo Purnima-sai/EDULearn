@@ -1,0 +1,307 @@
+/* === Base and Variables === */
+:root {
+    font-size: 62.5%; /* 1rem = 10px */
+
+    /* Color Variables (Dark Mode Default) */
+    --bg-primary: hsl(235, 35%, 19%);
+    --bg-panel: hsl(235, 30%, 25%);
+    --bg-panel-active: hsl(235, 36%, 35%);
+    --bg-circle-inner: hsl(235, 35%, 19%);
+    --bg-button: transparent;
+    --bg-button-hover: hsla(0, 0%, 100%, 0.1);
+
+    --text-primary: hsla(0, 0%, 100%, 0.9);
+    --text-secondary: hsla(0, 0%, 100%, 0.6);
+    --text-timer: hsla(0, 0%, 100%, 0.95);
+    --text-panel-active: hsl(358, 88%, 75%); /* Light red/pink */
+
+    --accent-color: hsl(358, 78%, 69%); /* Timer circle, active elements */
+    --shadow-color: hsla(235, 30%, 10%, 0.4);
+    --progress-ring-bg: hsl(235, 30%, 30%);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease-in-out;
+    --transition-theme: 0.3s ease;
+}
+
+.light-mode {
+    /* Light Mode Color Overrides */
+    --bg-primary: hsl(230, 30%, 96%);
+    --bg-panel: hsl(230, 25%, 90%);
+    --bg-panel-active: hsl(230, 28%, 85%);
+    --bg-circle-inner: hsl(230, 30%, 96%);
+    --bg-button-hover: hsla(0, 0%, 0%, 0.05);
+
+    --text-primary: hsl(235, 35%, 19%);
+    --text-secondary: hsl(235, 15%, 40%);
+    --text-timer: hsl(235, 35%, 19%);
+    --text-panel-active: hsl(358, 60%, 55%); /* Darker red/pink */
+
+    --accent-color: hsl(358, 70%, 60%);
+    --shadow-color: hsla(235, 20%, 70%, 0.4);
+    --progress-ring-bg: hsl(230, 25%, 88%);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-color: var(--bg-primary);
+    font-size: 1.6rem;
+    font-family: 'Poppins', sans-serif; /* Updated font */
+    transition: background-color var(--transition-theme), color var(--transition-theme);
+}
+
+p, i, h1, button {
+    color: var(--text-primary);
+    transition: color var(--transition-theme);
+}
+
+button {
+    font-family: inherit; /* Ensure buttons use the body font */
+}
+
+i {
+    font-size: 2.8rem; /* Slightly smaller icons */
+}
+
+h1 {
+    font-size: 3.2rem; /* Slightly larger heading */
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem; /* Spacing below heading */
+    color: var(--text-primary);
+}
+h5{
+    font-size: 2.2rem; /* Slightly larger heading */
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem; /* Spacing below heading */
+    color: var(--text-primary);
+}
+
+/* === Theme Toggle === */
+#theme-toggle {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: var(--bg-panel);
+    border: none;
+    border-radius: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    z-index: 10;
+    transition: background-color var(--transition-theme);
+}
+#theme-toggle i {
+    font-size: 2rem;
+    position: absolute; /* Overlap icons */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+/* Hide inactive icon */
+.light-mode #theme-toggle .fa-sun { opacity: 0; transform: scale(0); }
+.dark-mode #theme-toggle .fa-moon { opacity: 0; transform: scale(0); }
+/* Show active icon */
+.light-mode #theme-toggle .fa-moon { opacity: 1; transform: scale(1); }
+.dark-mode #theme-toggle .fa-sun { opacity: 1; transform: scale(1); }
+
+
+/* ==== CONTENT ==== */
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    padding: 2rem;
+}
+
+.container {
+    width: min(45rem, 100%); /* Slightly wider */
+    margin-inline: auto;
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: var(--bg-panel); /* Container background */
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px var(--shadow-color);
+    transition: background-color var(--transition-theme), box-shadow var(--transition-theme);
+}
+
+/* === Cycle Selection === */
+.cycle-select {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.cycle-btn {
+    padding: 0.8rem 1.5rem;
+    border: 1px solid var(--text-secondary);
+    background-color: transparent;
+    color: var(--text-secondary);
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: var(--transition-fast);
+}
+.cycle-btn:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+.cycle-btn.active-cycle {
+    background-color: var(--accent-color);
+    color: hsl(0, 0%, 100%); /* Always white text on accent */
+    border-color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* === Panel === */
+.panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    width: 22rem;
+    margin-bottom: 3rem; /* Space before timer */
+    padding: 1.2rem;
+    border-radius: 10rem;
+    background-color: var(--bg-panel-active); /* Slightly different bg */
+    box-shadow: inset 0 2px 5px hsla(0, 0%, 0%, 0.1);
+    transition: background-color var(--transition-theme);
+}
+.panel p {
+    opacity: 0.7;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    transition: opacity var(--transition-fast), color var(--transition-theme);
+    cursor: default;
+}
+.panel p.active-panel {
+    opacity: 1;
+    color: var(--text-panel-active);
+}
+
+/* === Timer === */
+.timer {
+    position: relative; /* For positioning time */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30rem;
+    height: 30rem;
+    border-radius: 50%;
+    /* Removed outer shadow, applied to container now */
+}
+
+.circle {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Fill .timer */
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--bg-circle-inner); /* Inner circle bg */
+    box-shadow: inset 0 0 20px hsla(0, 0%, 0%, 0.15), /* Inner shadow */
+                 0 5px 15px var(--shadow-color); /* Outer shadow */
+    transition: background-color var(--transition-theme), box-shadow var(--transition-theme);
+}
+
+/* SVG Progress Ring */
+.circle svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.bg-circle {
+    fill: none;
+    stroke: var(--progress-ring-bg);
+    stroke-width: 10;
+    transition: stroke var(--transition-theme);
+}
+.progress-circle {
+    fill: none;
+    stroke: var(--accent-color);
+    stroke-width: 10;
+    stroke-linecap: round; /* Rounded end */
+    stroke-dasharray: 754; /* Circumference (2 * pi * 120) */
+    stroke-dashoffset: 754; /* Start empty */
+    transition: stroke-dashoffset 1s linear, stroke var(--transition-theme);
+}
+
+.time {
+    position: relative; /* Ensure time is above SVG */
+    z-index: 2;
+    display: flex;
+    align-items: center; /* Align vertically */
+}
+
+.time p {
+    font-size: 7rem; /* Larger timer numbers */
+    font-weight: 600;
+    color: var(--text-timer);
+    transition: color var(--transition-theme);
+}
+
+.time p.colon {
+    font-size: 5rem; /* Smaller colon */
+    font-weight: 400;
+    margin-inline: 0.5rem;
+    transform: translateY(-0.3rem); /* Adjust vertical alignment */
+    color: var(--text-secondary);
+}
+
+/* === Controls === */
+.controls {
+    margin-top: 4rem; /* More space above controls */
+    display: flex;
+    gap: 3rem; /* Space between buttons */
+    align-items: center;
+}
+
+.controls button {
+    border: none;
+    background-color: var(--bg-button);
+    border-radius: 50%; /* Make buttons circular */
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.controls button:hover {
+    background-color: var(--bg-button-hover);
+}
+.controls button:active {
+    transform: scale(0.95); /* Press effect */
+}
+
+.controls button i {
+    font-size: 2.4rem; /* Adjust icon size within button */
+    color: var(--text-primary);
+    transition: color var(--transition-theme);
+}
+.controls button#start i { color: #4caf50; /* Green play */ }
+.controls button#pause i { color: #ff9800; /* Orange pause */ }
+.controls button#reset i { color: var(--text-secondary); }
+
+.light-mode .controls button#start i { color: #388e3c; }
+.light-mode .controls button#pause i { color: #f57c00; }

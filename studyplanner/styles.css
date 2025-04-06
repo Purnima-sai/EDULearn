@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+/* Define CSS Variables in :root (Default/Base values - Set to RED Theme) */
+:root {
+  /* Base Colors */
+  --bg-body: #121111;
+  --bg-container: #120707;
+  --bg-input: #333;
+  --bg-task: #151515;
+  --bg-task-hover: #373333;
+  --bg-task-completed: #2a2a2a;
+  --bg-progress-track: #443f3f;
+
+  --text-primary: #e0e0e0;
+  --text-secondary: #b9adad;
+  --text-button: #ffffff; /* White text for Red button */
+
+  /* Accent & Themeable Colors (DEFAULT IS RED) */
+  --accent-primary: #dc3545; /* Bold Red */
+  --accent-secondary: #c82333; /* Darker Red */
+  --accent-border: #a1232b; /* Darkest Red */
+  --accent-focus-glow: rgba(220, 53, 69, 0.25); /* Red Glow */
+  --accent-checkbox: var(--accent-primary);
+  --accent-progress-fill: var(--accent-primary);
+
+  --heading-color: var(--accent-primary);
+  --heading-border: #444;
+
+  --button-bg: var(--accent-primary);
+  --button-bg-hover: var(--accent-secondary);
+
+  --task-border-accent: var(--accent-primary);
+  --task-border-completed: #555;
+
+  --shadow-container: 0 6px 20px rgba(0, 0, 0, 0.3);
+  --shadow-task: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-task-hover: 0 4px 8px rgba(0, 0, 0, 0.25);
+
+  /* Font */
+  --font-main: 'Nunito', sans-serif;
+}
+
+/* --- Bold Theme Classes --- */
+
+/* RED THEME (Matches :root defaults) */
+.theme-red {
+  --accent-primary: #dc3545;
+  --accent-secondary: #c82333;
+  --accent-border: #a1232b;
+  --accent-focus-glow: rgba(220, 53, 69, 0.25);
+  --accent-checkbox: var(--accent-primary);
+  --accent-progress-fill: var(--accent-primary);
+  --heading-color: var(--accent-primary);
+  --button-bg: var(--accent-primary);
+  --button-bg-hover: var(--accent-secondary);
+  --text-button: #ffffff; /* Ensure white text */
+  --task-border-accent: var(--accent-primary);
+}
+
+/* GREEN THEME */
+.theme-green {
+  --accent-primary: #28a745; /* Bootstrap Success Green */
+  --accent-secondary: #218838; /* Darker Green */
+  --accent-border: #19692c; /* Darkest Green */
+  --accent-focus-glow: rgba(37, 180, 70, 0.25); /* Green Glow */
+  --accent-checkbox: var(--accent-primary);
+  --accent-progress-fill: var(--accent-primary);
+  --heading-color: var(--accent-primary);
+  --button-bg: var(--accent-primary);
+  --button-bg-hover: var(--accent-secondary);
+  --text-button: #ffffff; /* White text */
+  --task-border-accent: var(--accent-primary);
+}
+
+/* YELLOW THEME */
+.theme-yellow {
+  --accent-primary: #ffc107; /* Bootstrap Warning Yellow */
+  --accent-secondary: #e0a800; /* Darker Yellow */
+  --accent-border: #b38600; /* Darkest Yellow */
+  --accent-focus-glow: rgba(255, 193, 7, 0.25); /* Yellow Glow */
+  --accent-checkbox: var(--accent-primary);
+  --accent-progress-fill: var(--accent-primary);
+  --heading-color: var(--accent-primary);
+  --button-bg: var(--accent-primary);
+  --button-bg-hover: var(--accent-secondary);
+  --text-button: #212529; /* Dark text for yellow button */
+  --task-border-accent: var(--accent-primary);
+}
+
+
+/* --- Base Styles using Variables (No changes needed below this line) --- */
+body {
+  font-family: var(--font-main);
+  margin: 0;
+  padding: 20px;
+  background-color: var(--bg-body);
+  color: var(--text-primary);
+  line-height: 1.6;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+/* Theme Switcher Styles */
+.theme-switcher {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+  display: flex;
+  gap: 5px;
+  background: rgba(0,0,0,0.4);
+  padding: 5px;
+  border-radius: 5px;
+}
+.theme-switcher button {
+  padding: 5px 10px;
+  border: 1px solid #555;
+  background-color: #333;
+  color: #ccc;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.8em;
+  transition: background-color 0.2s, color 0.2s;
+}
+.theme-switcher button:hover {
+  background-color: #444;
+  color: #fff;
+}
+.theme-switcher button.active-theme {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    font-weight: bold;
+}
+
+
+.container {
+  max-width: 900px;
+  margin: 70px auto 30px auto;
+  padding: 40px 50px;
+  background-color: var(--bg-container);
+  border: 1px solid var(--heading-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-container);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+h1, h2 {
+  text-align: center;
+  color: var(--heading-color);
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--heading-border);
+  padding-bottom: 15px;
+  margin-bottom: 35px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Removed special H2 styling */
+
+.add-task-area {
+  display: flex;
+  margin-bottom: 30px;
+  gap: 15px;
+}
+
+#newTaskInput {
+  flex-grow: 1;
+  padding: 12px 18px;
+  border: 1px solid var(--accent-border);
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#newTaskInput::placeholder {
+  color: var(--text-secondary);
+}
+
+#newTaskInput:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-focus-glow);
+}
+
+#addTaskButton {
+  padding: 12px 25px;
+  background-color: var(--button-bg);
+  color: var(--text-button);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  font-size: 1em;
+}
+
+#addTaskButton:hover {
+  background-color: var(--button-bg-hover);
+}
+#addTaskButton:active {
+    transform: scale(0.98);
+}
+
+#tasks {
+  margin-bottom: 40px;
+  min-height: 60px;
+}
+
+#noTasksMessage {
+    color: var(--text-secondary);
+    text-align: center;
+    font-style: italic;
+    padding: 20px 0;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  background-color: var(--bg-task);
+  border-radius: 8px;
+  border-left: 5px solid var(--task-border-accent);
+  transition: background-color 0.3s ease, border-left-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-task);
+}
+.task:hover {
+    background-color: var(--bg-task-hover);
+    box-shadow: var(--shadow-task-hover);
+}
+
+.task span {
+  flex-grow: 1;
+  margin-right: 15px;
+  word-break: break-word;
+  color: var(--text-primary);
+}
+
+.task.completed {
+  background-color: var(--bg-task-completed);
+  border-left-color: var(--task-border-completed);
+  box-shadow: none;
+}
+.task.completed:hover {
+    background-color: var(--bg-task-completed);
+    box-shadow: none;
+}
+
+.task.completed span {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.task input[type="checkbox"] {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent-checkbox);
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+#progress {
+  text-align: center;
+  font-size: 1.1em;
+  margin-top: 30px;
+}
+
+#progressBar {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: 18px;
+  border-radius: 9px;
+  border: 1px solid #555;
+  background-color: var(--bg-progress-track);
+  overflow: hidden;
+}
+
+#progressBar::-webkit-progress-bar {
+  background-color: var(--bg-progress-track);
+  border-radius: 9px;
+}
+#progressBar::-moz-progress-bar {
+  background-color: var(--bg-progress-track);
+  border-radius: 9px;
+}
+
+#progressBar::-webkit-progress-value {
+  background-color: var(--accent-progress-fill);
+  border-radius: 9px 0 0 9px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+#progressBar[value="100"]::-webkit-progress-value {
+    border-radius: 9px;
+}
+
+#progressBar::-moz-progress-bar {
+  background-color: var(--accent-progress-fill);
+  border-radius: 9px;
+   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+
+#progressText {
+  margin-top: 10px;
+  font-weight: 600;
+  color: var(--accent-progress-fill);
+  transition: color 0.3s ease;
+}

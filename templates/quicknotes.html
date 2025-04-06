@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quick Notes</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fefefe;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      color: #444;
+    }
+
+    textarea {
+      width: 90%;
+      max-width: 700px;
+      height: 200px;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      resize: vertical;
+      background: #fffbe6;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    button {
+      padding: 0.6rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button#save {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    button#clear {
+      background-color: #f44336;
+      color: white;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    p#status {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    @media (max-width: 600px) {
+      textarea {
+        height: 150px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📝 Quick Notes</h1>
+  <textarea id="note" placeholder="Type your note here..."></textarea>
+
+  <div class="buttons">
+    <button id="save">💾 Save</button>
+    <button id="clear">🗑️ Clear</button>
+  </div>
+
+  <p id="status"></p>
+
+  <script>
+    const noteArea = document.getElementById('note');
+    const saveBtn = document.getElementById('save');
+    const clearBtn = document.getElementById('clear');
+    const status = document.getElementById('status');
+
+    // Load note from localStorage
+    window.onload = () => {
+      const savedNote = localStorage.getItem('quickNote');
+      if (savedNote) {
+        noteArea.value = savedNote;
+        status.innerText = "✅ Note loaded from your browser.";
+      }
+    };
+
+    // Save note
+    saveBtn.onclick = () => {
+      localStorage.setItem('quickNote', noteArea.value);
+      status.innerText = "✅ Note saved!";
+    };
+
+    // Clear note
+    clearBtn.onclick = () => {
+      if (confirm("Clear this note?")) {
+        localStorage.removeItem('quickNote');
+        noteArea.value = '';
+        status.innerText = "🗑️ Note cleared.";
+      }
+    };
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+/* --- Global Styles & Variables --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-color: #731717f4; /* Professional Blue */
+    --secondary-color: #f8f9fa; /* Light grey background */
+    --text-dark: #343a40;
+    --text-light: #6c757d;
+    --white-color: #ffffff;
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --error-color: #dc3545; /* Red for errors */
+    --success-color: #28a745; /* Green for success */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--secondary-color);
+    padding: 20px;
+}
+
+/* --- Main Container --- */
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 950px; /* Adjust max width as needed */
+    background-color: var(--white-color);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    overflow: hidden; /* Keep image contained */
+}
+
+/* --- Image Section (Left Side) --- */
+.image-section {
+    flex-basis: 45%; /* Adjust width ratio */
+    background-color: var(--primary-color); /* Background for image area */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    position: relative; /* For potential overlays if needed */
+}
+.image-section::before { /* Optional subtle overlay */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2));
+    opacity: 0.5;
+}
+
+.image-section img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    position: relative; /* To be above overlay */
+    z-index: 1;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2)); /* Add subtle shadow to image */
+}
+
+/* --- Form Sections (Login/Signup - Right Side) --- */
+.login-section,
+.registration-section {
+    flex-basis: 55%; /* Adjust width ratio */
+    padding: 50px 40px; /* More padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-section h2,
+.registration-section h2 {
+    color: var(--text-dark);
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Link positioning (Sign In on Signup page) */
+.registration-section .sign-in-link {
+    text-align: right;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+.registration-section .sign-in-link:hover {
+    text-decoration: underline;
+}
+
+/* --- Input Groups --- */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group i.fas { /* Icon styling */
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 16px;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"] {
+    width: 100%;
+    padding: 12px 15px 12px 45px; /* Padding left for icon */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    color: var(--text-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.2);
+}
+
+/* --- Specific Features (Remember Me / Terms) --- */
+.remember-me,
+.terms-and-conditions {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.remember-me input[type="checkbox"],
+.terms-and-conditions input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: var(--primary-color); /* Color the check */
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+}
+.remember-me label,
+.terms-and-conditions label {
+    cursor: pointer;
+}
+
+
+/* --- Buttons --- */
+button.primary-button { /* Consistent class for main actions */
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 20px; /* Space below button */
+}
+
+button.primary-button:hover {
+    background-color: #041c50; /* Darker blue */
+    transform: translateY(-2px);
+}
+button.primary-button:active {
+    transform: translateY(0);
+}
+
+/* Google Buttons */
+#google-button, /* Existing ID */
+.google-signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--white-color);
+    color: var(--text-dark);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Space above Google button if needed */
+}
+#google-button div, /* Target inner div created by Google */
+.google-signup { /* Apply to signup button directly */
+    background-color: transparent !important; /* Override Google's default styles if needed */
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.google-signup:hover {
+    background-color: #f1f1f1; /* Light grey hover */
+}
+
+/* --- Footer (Login Page) --- */
+.login-section .footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.login-section .footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    display: block; /* Make link take full width */
+    margin-bottom: 15px; /* Space below link */
+}
+
+.login-section .footer a:hover {
+    text-decoration: underline;
+}
+
+.login-section .social-login {
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        max-width: 500px; /* Adjust for stacked layout */
+    }
+    .image-section {
+        flex-basis: auto; /* Reset basis */
+        height: 250px; /* Fixed height for image area */
+        padding: 20px;
+    }
+    .image-section img {
+        max-height: 100%; /* Ensure image fits */
+        width: auto;
+    }
+    .login-section,
+    .registration-section {
+        flex-basis: auto; /* Reset basis */
+        padding: 40px 30px;
+    }
+    .login-section h2,
+    .registration-section h2 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+     .login-section,
+    .registration-section {
+        padding: 30px 20px;
+    }
+    .image-section {
+        height: 200px; /* Smaller image area */
+    }
+}

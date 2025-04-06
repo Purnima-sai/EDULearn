@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #b1173b, #f1d4cf);
+      color: white;
+      padding: 2rem 3rem;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      z-index: 9999;
+      display: none;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="image-section">
+      <img src="../static/4cnf_xrvt_140708-removebg-preview.png" alt="Signup Illustration">
+    </div>
+
+    <div class="registration-section">
+      <a href="../login_page/login.html" class="sign-in-link">Already have an account? Log In</a>
+      <h2>Sign Up</h2>
+
+      <form id="signupForm">
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" name="username" placeholder="Full Name" required>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+        </div>
+
+        <div class="terms-and-conditions">
+          <input type="checkbox" name="terms" id="terms" required>
+          <label for="terms">I accept the <a href="#">Terms</a> & <a href="#">Privacy Policy</a></label>
+        </div>
+
+        <button type="submit" class="primary-button">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Popup -->
+  <div class="popup" id="successPopup">
+    🎉 Registration Successful! Redirecting to welcome page...
+  </div>
+
+  <!-- Canvas Confetti Script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+      e.preventDefault(); // Stop form from refreshing the page
+
+      // Get form values
+      const username = document.querySelector('input[name="username"]').value;
+      const email = document.querySelector('input[name="email"]').value;
+
+      // Create a mock user object
+      const user = {
+        name: username,
+        email: email,
+        role: "Student",
+        joined: new Date().toLocaleDateString(),
+        courses: 0,
+        notes: 0,
+        pomodoro: 0,
+      };
+
+      // Save to localStorage
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+      // Show popup
+      const popup = document.getElementById("successPopup");
+      popup.style.display = "block";
+
+      // Confetti burst
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+
+      // Redirect after 3 seconds
+      setTimeout(() => {
+        window.location.href = "../templates/welcome.html";
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>
